@@ -1,0 +1,30 @@
+<ng-container [ngTemplateOutlet]="_is_icon_only() ? iconOnlyButton : defaultButton"></ng-container>
+
+<ng-template #iconOnlyButton>
+  <button mat-icon-button color="primary" [ngClass]="_()" [class.has-childs]="hasChilds" [class.icon-only]="_is_icon_only()" disableRipple="hasChilds">
+    <div [ngClass]="_('label')">
+      <div [ngClass]="_('label-icon')">
+        <mat-icon>{{config.icon}}</mat-icon>
+      </div>
+    </div>
+    <ng-container *ngIf="hasChilds" [ngTemplateOutlet]="childs"></ng-container>
+  </button>
+</ng-template>
+
+<ng-template #defaultButton>
+  <button mat-button color="primary" [ngClass]="_()" [class.has-childs]="hasChilds" disableRipple="hasChilds">
+    <div [ngClass]="_('label')">
+      <div [ngClass]="_('label-icon')" *ngIf="(config.icon || '').length > 0">
+        <mat-icon>{{config.icon}}</mat-icon>
+      </div>
+      <span [ngClass]="_('label-text')">{{_lang_key() | translate: _lang_default()}}</span>
+    </div>
+    <ng-container *ngIf="hasChilds" [ngTemplateOutlet]="childs"></ng-container>
+  </button>
+</ng-template>
+
+<ng-template #childs>
+  <mat-list [ngClass]="_('list')">
+    <flz-toolbar-child-button *ngFor="let item of config.children" [config]="item"></flz-toolbar-child-button>
+  </mat-list>
+</ng-template>

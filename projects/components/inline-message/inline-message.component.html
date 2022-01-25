@@ -1,0 +1,4 @@
+<div [ngClass]="_('', type, isEnabled() ? 'enabled' : '')">
+  <span #wrapper *ngIf="content === undefined || content.length === 0"><ng-content></ng-content></span>
+  <span *ngIf="content !== undefined && content.length > 0">{{content}}</span>
+</div>

@@ -1,0 +1,190 @@
+@use '../core/theming/functions' as *;
+
+@use 'sass:map' as map;
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .flz-toolbar {
+    transition: box-shadow .3s, padding .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    position: relative;
+    z-index: 1000;
+    padding-right: 0;
+
+    .flz-toolbar-button {
+      position: relative;
+      user-select: none;
+
+      &.mat-icon-button{
+        height: 64px;
+        width: 64px;
+        border-radius: 0;
+      }
+
+      &.has-childs{
+        position: relative;
+      }
+
+      &-wrapper{
+        display: block;
+        cursor: pointer;
+
+        &.icon-only{
+          height: 64px;
+          width: 64px;
+        }
+
+        &.hovered, &.active{
+          &.has-childs{
+            .flz-toolbar-button{
+              &-list{
+                max-height: 100vh;
+                opacity: 1;
+                padding: 0.75rem 0;
+              }
+            }
+          }
+        }
+      }
+
+      &-list {
+        transition: max-height .3s, opacity .3s, padding .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        position: absolute;
+        z-index: 1000;
+        padding: 0;
+        right: 0;
+        top: 100%;
+        min-width: 10vw;
+        max-height: 0;
+        opacity: 0.4;
+        overflow: hidden;
+        border-bottom-left-radius: 8.35%;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: -1;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 100%;
+          height: auto;
+          display: block;
+          width: 100%;
+          height: 10px;
+        }
+
+        &-wrapper{
+          display: block;
+        }
+
+        &-item{
+          height: auto;
+          border-left: 3px solid rgba(0, 0, 0, 0);
+          padding: 0.13rem 0.4rem;
+          outline: none;
+          padding-right: 1rem;
+
+          &-label{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            &-icon{
+              width: 30px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 0.6rem;
+            }
+            &-text{
+              transition: max-width .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+              white-space: nowrap;
+              padding-left: 0.4rem;
+              font-size: 0.9rem;
+              padding-left: 0.3rem;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin theme-color($theme) {
+  $config: mat.get-color-config($theme);
+  $foreground: map.get($config, foreground);
+  $background: map.get($config, background);
+  $primary: map.get($config, primary);
+  $accent: map.get($config, accent);
+  $warn: map.get($config, warn);
+
+
+  .flz-toolbar {
+    .flz-toolbar-button {
+      &.mat-icon-button{
+        color: mat.get-color-from-palette($foreground, icon);
+      }
+
+      &-wrapper{
+        &.hovered, &.active{
+          .flz-toolbar-button{
+            &.mat-icon-button{
+              color: mat.get-color-from-palette($primary, text);
+              background-color: mat.get-color-from-palette($foreground, base);
+            }
+          }
+        }
+      }
+
+      &-list {
+        background-color: mat.get-color-from-palette($primary, darker);
+        &::after {
+          background-color: mat.get-color-from-palette($primary, lighter);
+        }
+
+        &::before {
+          // TODO: convert to angular-material theme
+          box-shadow: inset 0 0.3rem 0.6rem 0 rgba(44, 51, 73, 0.08);
+        }
+
+        &-wrapper{
+          &.hovered, &.active{
+            .flz-toolbar-button-list-item{
+              background-color: mat.get-color-from-palette($primary, lighter, 0.3);
+              border-left: 3px solid mat.get-color-from-palette($primary, darker, 0.6);
+
+              &-label{
+                &-icon, &-text{
+                  color: mat.get-color-from-palette($primary, darker);
+                }
+              }
+            }
+          }
+          &.active {
+            border-left: 3px solid mat.get-color-from-palette($primary, darker, 0.8);
+          }
+        }
+
+        &-item{
+          &-label{
+            &-icon{
+              color: mat.get-color-from-palette($foreground, icon);
+            }
+            &-text{
+              color: mat.get-color-from-palette($foreground, text);
+            }
+          }
+        }
+      }
+    }
+  }
+}

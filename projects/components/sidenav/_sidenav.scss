@@ -1,0 +1,227 @@
+@use '../core/theming/functions' as *;
+
+@use 'sass:map' as map;
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .flz-sidenav{
+    position: relative;
+    user-select: none;
+    z-index: 9998;
+    padding-top: 0 !important;
+    min-width: 15.5vw;
+
+    @media screen and (min-width: 992px) {
+      min-width: 12vw;
+    }
+
+    @media screen and (min-width: 1200px) {
+      min-width: 18vw;
+    }
+
+    &-for-child{
+      transition: all .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      position: relative;
+      padding: 0;
+      z-index: 9999;
+      pointer-events: all;
+      flex: 1 1 auto;
+      padding-left: 0.8rem;
+      overflow: hidden;
+      max-height: 0;
+
+      > .mat-list-item-content {
+        transition: all .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      }
+    }
+
+    .flz-sidenav-button{
+      display: block;
+      cursor: pointer;
+
+      &-label{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        &-for-parent{
+          height: 48px;
+
+          > div {
+            line-height: 48px;
+          }
+        }
+
+        &-icon{
+          width: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.86rem;
+
+          &-for-child{
+            font-size: 0.6rem;
+          }
+        }
+        &-text{
+          transition: max-width .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+          white-space: nowrap;
+          padding-left: 0.4rem;
+
+          &-for-parent{
+            line-height: 48px;
+          }
+
+          &-for-child{
+            font-size: 0.9rem;
+            padding-left: 0.3rem;
+            line-height: 28px;
+          }
+        }
+      }
+
+      &.has-childs{
+        max-height: 48px;
+        height: auto;
+        min-height: 48px;
+        transition: all .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+
+        > .mat-list-item-content{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          transition: all .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .flz-sidenav-for-child{
+          transition: all .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+          opacity: 0;
+          max-height: 0;
+          overflow: hidden;
+          &.mat-list-base{
+            padding: 0;
+          }
+        }
+
+        .flz-sidenav-button{
+          &-for-child{
+            height: 1.75rem !important;
+            border-left: 3px solid rgba(0, 0, 0, 0);
+            outline: none;
+            .mat-list-item-content{
+              padding-left: 0 !important;
+              .flz-sidenav-button-label {
+                &-icon {
+                  font-size: 0.8rem;
+                }
+                &-text {
+                  font-size: 0.9rem;
+                  padding-left: 0.3rem;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &-wrapper{
+        display: block;
+        cursor: pointer;
+        outline: none;
+
+        &.is-hovered, &.active{
+          &.has-childs{
+            .flz-sidenav-button{
+              &-label{
+                &-text{
+                  &-for-parent{
+                    font-weight: 500;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &-for-parent{
+          &.hovered, &.active{
+            .flz-sidenav-button{
+              max-height: 100vh;
+              &.has-childs{
+                .flz-sidenav-for-child{
+                  max-height: 100vh;
+                  padding-bottom: 0.8rem;
+                  width: 100%;
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin theme-color($theme) {
+  $config: mat.get-color-config($theme);
+  $foreground: map.get($config, foreground);
+  $background: map.get($config, background);
+  $primary: map.get($config, primary);
+  $accent: map.get($config, accent);
+  $warn: map.get($config, warn);
+
+  .flz-sidenav{
+    .flz-sidenav-button{
+      &-label{
+        &-icon{
+          color: mat.get-color-from-palette($foreground, icon);
+        }
+        &-text{
+          color: mat.get-color-from-palette($foreground, text);
+        }
+      }
+
+      &-wrapper{
+        &.is-hovered, &.active{
+          .flz-sidenav-button{
+            &-for-parent{
+              background-color: mat.get-color-from-palette($foreground, lighter, 0.5);
+            }
+            &-label{
+              &-icon, &-text{
+                &-for-parent{
+                  color: mat.get-color-from-palette($foreground, darker);
+                }
+              }
+            }
+          }
+        }
+
+        &-for-child{
+          &.is-hovered, &.active{
+            .flz-sidenav-button{
+              &-for-child{
+                background-color: mat.get-color-from-palette($foreground, lighter, 0.3);
+                border-left: 3px solid mat.get-color-from-palette($foreground, darker, 0.6);
+              }
+              &-label{
+                &-icon, &-text{
+                  &-for-child{
+                    color: mat.get-color-from-palette($foreground, darker);
+                  }
+                }
+              }
+            }
+          }
+          &.active{
+            .flz-sidenav-button{
+              &-for-child{
+                border-left: 3px solid mat.get-color-from-palette($foreground, darker, 0.8);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.flz-form-field-wrapper .mat-form-field {
+  width: 100%;
+  display: block; }
+
+.flz-form-field-wrapper .flz-form-field:not(.mat-form-field) {
+  display: flex;
+  align-items: center; }
+  .flz-form-field-wrapper .flz-form-field:not(.mat-form-field) button[mat-icon-button] {
+    margin-bottom: 1rem;
+    border-radius: 0 !important; }
+    .flz-form-field-wrapper .flz-form-field:not(.mat-form-field) button[mat-icon-button].prefix {
+      margin-right: 0.4rem; }
+    .flz-form-field-wrapper .flz-form-field:not(.mat-form-field) button[mat-icon-button].suffix {
+      margin-left: 0.4rem; }
+
+.flz-form-field-wrapper .flz-form-field-toggle {
+  margin-left: 0.2rem; }
+
+.flz-form-field-wrapper .flz-form-field-checkbox {
+  margin-left: 0.3rem; }
+
+.flz-form-field-wrapper .flz-form-field-button {
+  border-radius: 0 !important;
+  background: none !important;
+  height: 24px !important;
+  width: 24px !important; }
+
+.flz-form-field-wrapper .flz-form-field .mat-error {
+  overflow: hidden;
+  transition: opacity 0.3s, max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.mat-form-field-suffix {
+  user-select: none; }
+
+.mat-form-field-prefix {
+  user-select: none; }

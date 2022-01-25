@@ -1,0 +1,125 @@
+{
+  "name": "@fokklzdev/components",
+  "version": "13.2.5",
+  "description": "angular components based on @angular/material",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fokklz/components.git"
+  },
+  "peerDependencies": {
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "@angular/material": "^13.0.0",
+    "@angular/cdk": "^13.0.0",
+    "@angular/forms": "^13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@angular/material-moment-adapter": "^13.0.0",
+    "@ngx-translate/core": "*",
+    "@fortawesome/fontawesome-free": "*",
+    "bootstrap": "*"
+  },
+  "keywords": [],
+  "author": "Fokko Vos <fokko.vos@fokklz.dev>",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "sass": "./_index.scss",
+      "types": "./fokklzdev-components.d.ts",
+      "esm2020": "./esm2020/fokklzdev-components.mjs",
+      "es2020": "./fesm2020/fokklzdev-components.mjs",
+      "es2015": "./fesm2015/fokklzdev-components.mjs",
+      "node": "./fesm2015/fokklzdev-components.mjs",
+      "default": "./fesm2020/fokklzdev-components.mjs"
+    },
+    "./mixins": {
+      "sass": "./core/theming/_mixins.scss"
+    },
+    "./functions": {
+      "sass": "./core/theming/_functions.scss"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./admin-panel": {
+      "types": "./admin-panel/fokklzdev-components-admin-panel.d.ts",
+      "esm2020": "./esm2020/admin-panel/fokklzdev-components-admin-panel.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-admin-panel.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-admin-panel.mjs",
+      "node": "./fesm2015/fokklzdev-components-admin-panel.mjs",
+      "default": "./fesm2020/fokklzdev-components-admin-panel.mjs"
+    },
+    "./core": {
+      "types": "./core/fokklzdev-components-core.d.ts",
+      "esm2020": "./esm2020/core/fokklzdev-components-core.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-core.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-core.mjs",
+      "node": "./fesm2015/fokklzdev-components-core.mjs",
+      "default": "./fesm2020/fokklzdev-components-core.mjs"
+    },
+    "./form-builder": {
+      "types": "./form-builder/fokklzdev-components-form-builder.d.ts",
+      "esm2020": "./esm2020/form-builder/fokklzdev-components-form-builder.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-form-builder.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-form-builder.mjs",
+      "node": "./fesm2015/fokklzdev-components-form-builder.mjs",
+      "default": "./fesm2020/fokklzdev-components-form-builder.mjs"
+    },
+    "./icon": {
+      "types": "./icon/fokklzdev-components-icon.d.ts",
+      "esm2020": "./esm2020/icon/fokklzdev-components-icon.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-icon.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-icon.mjs",
+      "node": "./fesm2015/fokklzdev-components-icon.mjs",
+      "default": "./fesm2020/fokklzdev-components-icon.mjs"
+    },
+    "./inline-message": {
+      "types": "./inline-message/fokklzdev-components-inline-message.d.ts",
+      "esm2020": "./esm2020/inline-message/fokklzdev-components-inline-message.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-inline-message.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-inline-message.mjs",
+      "node": "./fesm2015/fokklzdev-components-inline-message.mjs",
+      "default": "./fesm2020/fokklzdev-components-inline-message.mjs"
+    },
+    "./sidenav": {
+      "types": "./sidenav/fokklzdev-components-sidenav.d.ts",
+      "esm2020": "./esm2020/sidenav/fokklzdev-components-sidenav.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-sidenav.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-sidenav.mjs",
+      "node": "./fesm2015/fokklzdev-components-sidenav.mjs",
+      "default": "./fesm2020/fokklzdev-components-sidenav.mjs"
+    },
+    "./tags": {
+      "types": "./tags/fokklzdev-components-tags.d.ts",
+      "esm2020": "./esm2020/tags/fokklzdev-components-tags.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-tags.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-tags.mjs",
+      "node": "./fesm2015/fokklzdev-components-tags.mjs",
+      "default": "./fesm2020/fokklzdev-components-tags.mjs"
+    },
+    "./templates": {
+      "types": "./templates/fokklzdev-components-templates.d.ts",
+      "esm2020": "./esm2020/templates/fokklzdev-components-templates.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-templates.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-templates.mjs",
+      "node": "./fesm2015/fokklzdev-components-templates.mjs",
+      "default": "./fesm2020/fokklzdev-components-templates.mjs"
+    },
+    "./toolbar": {
+      "types": "./toolbar/fokklzdev-components-toolbar.d.ts",
+      "esm2020": "./esm2020/toolbar/fokklzdev-components-toolbar.mjs",
+      "es2020": "./fesm2020/fokklzdev-components-toolbar.mjs",
+      "es2015": "./fesm2015/fokklzdev-components-toolbar.mjs",
+      "node": "./fesm2015/fokklzdev-components-toolbar.mjs",
+      "default": "./fesm2020/fokklzdev-components-toolbar.mjs"
+    }
+  },
+  "module": "fesm2015/fokklzdev-components.mjs",
+  "es2020": "fesm2020/fokklzdev-components.mjs",
+  "esm2020": "esm2020/fokklzdev-components.mjs",
+  "fesm2020": "fesm2020/fokklzdev-components.mjs",
+  "fesm2015": "fesm2015/fokklzdev-components.mjs",
+  "typings": "fokklzdev-components.d.ts",
+  "sideEffects": false
+}

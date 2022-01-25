@@ -1,0 +1,59 @@
+
+@use '@angular/material'as mat;
+@use './import' as *;
+@use './all-colors' as all-colors;
+@use './all-styles' as all-styles;
+
+@mixin theme($light-theme, $dark-theme: $light-theme) {
+  @include mat.core();
+
+  body, #wrapper{
+    min-height: 100vh;
+  }
+
+  *{
+    padding: 0;
+    margin: 0;
+  }
+
+  #wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fill-space{
+    flex: 1 1 auto;
+  }
+
+  .mat-form-field{
+    display: block;
+    width: 100%;
+  }
+
+  :root{
+    @include mat.all-component-themes($dark-theme);
+    @include all-styles.theme($dark-theme);
+    @include all-colors.theme($dark-theme);
+    body{
+      @include transition(.1s, background-color, color);
+    }
+
+    &[data-theme="dark"] {
+      body{
+        background-color: get-color($dark-theme, background, background);
+        color: get-color($dark-theme, foreground, text);
+      }
+    }
+
+    &[data-theme="light"] {
+      @include mat.all-component-colors($light-theme);
+      @include all-colors.theme($light-theme);
+
+      body{
+        background-color: get-color($light-theme, background, background);
+        color: get-color($light-theme, foreground, text);
+      }
+    }
+  }
+
+}

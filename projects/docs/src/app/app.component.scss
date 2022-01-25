@@ -1,0 +1,8 @@
+@use 'sass:map' as map;
+@use '@angular/material' as mat;
+@use '../theme' as *;
+@use '../../../components/core/theming/mixins' as *;
+
+.brand {
+  @include mat.typography-level($typo-config, 'subheading-2');
+}

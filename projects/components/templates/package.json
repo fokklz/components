@@ -1,0 +1,13 @@
+{
+  "name": "@fokklzdev/components/templates",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@fokklzdev/components/form-builder": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

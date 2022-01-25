@@ -1,0 +1,11 @@
+<div [ngClass]="_()">
+  <flz-toolbar [routes]="toolbar"><ng-content select="button"></ng-content><ng-content select="flz-brand"></ng-content></flz-toolbar>
+  <mat-drawer-container [ngClass]="_('drawer-container')" autosize>
+    <mat-drawer [ngClass]="_('drawer')" #drawer mode="side" opened>
+      <flz-sidenav [routes]="sidenav" [basePath]="basePath"></flz-sidenav>
+    </mat-drawer>
+    <mat-drawer-content [ngClass]="_('drawer-content')">
+      <ng-content select="router-outlet"></ng-content>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

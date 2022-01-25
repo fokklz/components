@@ -1,0 +1,54 @@
+.flz-form-field-wrapper{
+  .mat-form-field{
+    width: 100%;
+    display: block;
+  }
+
+  .flz-form-field{
+    &:not(.mat-form-field){
+      display: flex;
+      align-items: center;
+
+      button[mat-icon-button]{
+        margin-bottom: 1rem;
+        border-radius: 0 !important;
+
+        &.prefix{
+          margin-right: 0.4rem;
+        }
+
+        &.suffix{
+          margin-left: 0.4rem;
+        }
+      }
+    }
+
+    &-toggle{
+      margin-left: 0.2rem;
+    }
+
+    &-checkbox{
+      margin-left: 0.3rem;
+    }
+
+    &-button{
+      border-radius: 0 !important;
+      background: none !important;
+      height: 24px !important;
+      width: 24px !important;
+    }
+
+    .mat-error {
+      overflow: hidden;
+      transition: opacity .3s, max-height .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+  }
+}
+
+.mat-form-field-suffix{
+  user-select: none;
+}
+
+.mat-form-field-prefix{
+  user-select: none;
+}

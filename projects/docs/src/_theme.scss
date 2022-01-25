@@ -1,0 +1,70 @@
+@use '@angular/material' as mat;
+@use 'sass:map' as map;
+@use '../../components/index' as flz;
+
+$typo-config: mat.define-typography-config(
+  $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+  $display-4:     mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3:     mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2:     mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1:     mat.define-typography-level(34px, 40px, 400),
+  $headline:      mat.define-typography-level(24px, 32px, 400),
+  $title:         mat.define-typography-level(20px, 32px, 500),
+  $subheading-2:  mat.define-typography-level(16px, 28px, 400),
+  $subheading-1:  mat.define-typography-level(15px, 24px, 400),
+  $body-2:        mat.define-typography-level(14px, 24px, 500),
+  $body-1:        mat.define-typography-level(14px, 20px, 400),
+  $caption:       mat.define-typography-level(12px, 20px, 400),
+  $button:        mat.define-typography-level(14px, 14px, 500),
+  $input:         mat.define-typography-level(inherit, 1.125, 400)
+);
+
+$light-primary-palette: mat.$teal-palette !default;
+$light-accent-palette: mat.$deep-purple-palette !default;
+$light-warn-palette: mat.$red-palette !default;
+$light-success-palette: mat.$light-green-palette !default;
+$light-info-palette: mat.$light-blue-palette !default;
+$light-warning-palette: mat.$yellow-palette !default;
+$light-theme: flz.define-light-theme(
+  mat.define-palette($light-primary-palette),
+  mat.define-palette($light-accent-palette, A200, A100, A400),
+  mat.define-palette($light-warn-palette),
+  mat.define-palette($light-info-palette, 300),
+  mat.define-palette($light-success-palette, 300),
+  mat.define-palette($light-warning-palette, 300)
+);
+
+$light-config: mat.get-color-config($light-theme);
+$light-foreground: map.get($light-config, foreground);
+$light-background: map.get($light-config, background);
+$light-primary: map.get($light-config, primary);
+$light-accent: map.get($light-config, accent);
+$light-warn: map.get($light-config, warn);
+$light-info: map.get($light-config, info);
+$light-success: map.get($light-config, success);
+$light-warning: map.get($light-config, warning);
+
+$dark-primary-palette: mat.$teal-palette !default;
+$dark-accent-palette: mat.$deep-purple-palette !default;
+$dark-warn-palette: mat.$red-palette !default;
+$dark-info-palette: mat.$light-blue-palette !default;
+$dark-success-palette: mat.$light-green-palette !default;
+$dark-warning-palette: mat.$yellow-palette !default;
+$dark-theme: flz.define-dark-theme(
+  mat.define-palette($dark-primary-palette, 800, 700, 900),
+  mat.define-palette($dark-accent-palette, 800, 700, 900),
+  mat.define-palette($dark-warn-palette),
+  mat.define-palette($dark-info-palette, 300),
+  mat.define-palette($dark-success-palette, 300),
+  mat.define-palette($dark-warning-palette, 300)
+);
+
+$dark-config: mat.get-color-config($dark-theme);
+$dark-foreground: map.get($dark-config, foreground);
+$dark-background: map.get($dark-config, background);
+$dark-primary: map.get($dark-config, primary);
+$dark-accent: map.get($dark-config, accent);
+$dark-warn: map.get($dark-config, warn);
+$dark-info: map.get($dark-config, info);
+$dark-success: map.get($dark-config, success);
+$dark-warning: map.get($dark-config, warning);

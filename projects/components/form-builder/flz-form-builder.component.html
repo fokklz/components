@@ -1,0 +1,18 @@
+<div [ngClass]="_('')" #nativeElement>
+  <flz-inline-message>{{message}}</flz-inline-message>
+  <form [ngClass]="preview === undefined ? _('form') : _('form', '-preview')" [formGroup]="form" (ngSubmit)="emitSubmit()">
+    <ng-container *ngFor="let inputGroup of groupedOptions">
+      <div [ngClass]="_('form-group', '-' + inputGroup.group)" *ngIf="inputGroup.group !== null">
+        <div *ngFor="let input of inputGroup.inputs; let i = index" [ngClass]="_('form-group-input', '-' + inputGroup.group)" [ngStyle]="{'width': inputGroup.width[i], 'max-width': inputGroup.width[i]}">
+          <flz-input [options]="input" [formControlName]="input.name" [form]="form"></flz-input>
+        </div>
+      </div>
+      <flz-input *ngIf="inputGroup.group == null" [options]="inputGroup.inputs[0]" [formControlName]="inputGroup.inputs[0].name"></flz-input>
+    </ng-container>
+    <div [ngClass]="_('form-buttons')">
+      <button mat-flat-button *ngIf="hasReset()" type="reset" tabindex="0">{{'FORMS.BUTTONS.RESET' | translate: resolveTranslateDefault('Reset')}}</button>
+      <span class="fill-space"></span>
+      <button mat-flat-button *ngIf="hasSubmit()" color="primary" type="submit" tabindex="0">{{'FORMS.BUTTONS.SUBMIT' | translate: resolveTranslateDefault('Submit')}}</button>
+    </div>
+  </form>
+</div>

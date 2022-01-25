@@ -1,0 +1,13 @@
+@use './all.imports' as *;
+
+@mixin theme($theme){
+  // core
+  @include panel-page-theme($theme);
+  @include thirdparty-button-theme($theme);
+
+  // components
+  @include inline-message-theme($theme);
+  @include sidenav-theme($theme);
+  @include toolbar-theme($theme);
+  @include admin-panel-theme($theme);
+}

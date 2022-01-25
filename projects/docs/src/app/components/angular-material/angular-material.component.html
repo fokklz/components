@@ -1,0 +1,38 @@
+<div class="contrainer-fluid g-0">
+  <div class="row g-0">
+    <div class="col-md-6 font-variants-preview">
+      <p class="mat-headline">Headline</p>
+      <p class="mat-title">Title</p>
+      <p class="mat-subheading-2">Subheading 2</p>
+      <p class="mat-subheading-1">Subheading 1</p>
+      <p class="mat-body-1">Body 1</p>
+      <p class="mat-body-2">Body 2</p>
+      <p class="mat-caption">Caption</p>
+      <p class="mat-button">Button</p>
+      <p class="mat-input">Input</p>
+    </div>
+    <div class="col-md-6 font-variants-preview">
+      <p class="mat-display-4">Display 4</p>
+      <p class="mat-display-3">Display 3</p>
+      <p class="mat-display-2">Display 2</p>
+      <p class="mat-display-1">Display 1</p>
+    </div>
+  </div>
+  <div class="row g-0">
+    <div class="col-md-12">
+      <div *ngFor="let color of ['primary', 'accent', 'warn', 'info', 'success', 'warning']" class="palette-preview-container">
+        <p class="mat-title mat-{{color}}-row-padding">{{color}}</p>
+        <div class="row g-0 mat-{{color}}-row mat-{{color}}-row-padding">
+          <div class="col-md-4">
+            default
+          </div>
+          <div class="col-md-4">
+            lighter
+          </div>
+          <div class="col-md-4">
+            darker
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

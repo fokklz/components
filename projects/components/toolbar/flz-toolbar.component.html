@@ -1,0 +1,5 @@
+<mat-toolbar [ngClass]="_()">
+  <ng-content></ng-content>
+  <span class="fill-space"></span>
+  <flz-toolbar-button *ngFor="let item of routes" [config]="item"></flz-toolbar-button>
+</mat-toolbar>

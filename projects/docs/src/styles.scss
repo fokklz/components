@@ -1,0 +1,4 @@
+@use '../../components/index' as flz;
+@use './theme' as *;
+
+@include flz.theme($light-theme, $dark-theme);

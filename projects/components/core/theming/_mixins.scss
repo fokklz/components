@@ -1,0 +1,102 @@
+@use 'sass:map' as map;
+@use 'sass:list' as list;
+@use './variables' as *;
+
+
+@mixin light() {
+  @media (prefers-color-scheme: light) {
+    @at-root #{selector-nest('::ng-deep:root:not([data-theme=light]):not([data-theme=dark])', &)} {
+      @content;
+    }
+  }
+  @at-root #{selector-nest('::ng-deep:root[data-theme=light]', &)} {
+    @content;
+  }
+}
+
+@mixin dark() {
+    @media (prefers-color-scheme: dark) {
+      @at-root #{selector-nest('::ng-deep:root:not([data-theme=light]):not([data-theme=dark])', &)} {
+        @content;
+      }
+    }
+    @at-root #{selector-nest('::ng-deep:root[data-theme=dark]', &)} {
+      @content;
+    }
+}
+
+@function _validate_transition_timing($timing){
+  @if type-of($timing) == string {
+    @if not map.has-key($easing, $timing) {
+      @error "Timing '" + $timing + "' could not be found. use: " + map.keys($easing);
+    }
+  }
+  @return true;
+}
+
+// create a simple & easy transition
+@mixin transition($time, $properties...) {
+  $transition: ();
+  @each $property in $properties {
+    $transition: list.append(
+        $transition, ($property $time map.get($easing, default)), $separator: comma
+    );
+  }
+
+  transition: $transition;
+}
+
+// create a simple & easy transition with custom timing-function
+@mixin transition-custom-timing($time, $timing, $properties...) {
+  @if _validate_transition_timing($timing){
+
+    @if type-of($timing) == string {
+      $timing: map.get($easing, $timing);
+    }
+
+    $transition: ();
+    @each $property in $properties {
+      $transition: list.append(
+          $transition, ($property $time $timing), $separator: comma
+      );
+    }
+
+    transition: $transition;
+  }
+}
+
+// create a complex transition object with default values based on the passed List an the first two arguments
+@mixin transition-master($time, $timing, $propertyList...) {
+  @if _validate_transition_timing($timing){
+    $transition: ();
+    @each $property in $propertyList {
+      @if length($property) > 3 or length($property) == 0 {
+        @error "propery consits of a SCSS-List: <property> [time] [timing]";
+      }
+
+      $_property: list.nth($property, 1);
+      $_time: $time;
+      $_timing: $timing;
+
+      @if length($property) >= 2 {
+        $_time: list.nth($property, 2);
+      }
+
+      @if length($property) == 3 {
+        $_timing: list.nth($property, 3);
+        @if _validate_transition_timing($_timing){
+          @if type-of($_timing) == string {
+            $_timing: map.get($easing, $_timing);
+          }
+        }
+      }
+
+      $transition: list.append(
+          $transition, ($_property $_time $_timing), $separator: comma
+      );
+    }
+
+    transition: $transition;
+  }
+}
+

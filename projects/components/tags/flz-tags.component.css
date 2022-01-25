@@ -1,0 +1,11 @@
+.flz-tags {
+  padding: 0.2rem 0.3rem;
+  white-space: nowrap; }
+  .flz-tags-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    .flz-tags-list .flz-tag-wrapper {
+      margin: 0.15rem; }
+  .flz-tags-wrapper {
+    display: flex; }

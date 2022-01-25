@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+$light-primary-palette: mat.$teal-palette !default;
+$light-accent-palette: mat.$deep-purple-palette !default;
+$light-warn-palette: mat.$red-palette !default;
+$light-success-palette: mat.$light-green-palette !default;
+$light-info-palette: mat.$light-blue-palette !default;
+$light-warning-palette: mat.$yellow-palette !default;
+
+$dark-primary-palette: mat.$teal-palette !default;
+$dark-accent-palette: mat.$deep-purple-palette !default;
+$dark-warn-palette: mat.$red-palette !default;
+$dark-info-palette: mat.$blue-palette !default;
+$dark-success-palette: mat.$green-palette !default;
+$dark-warning-palette: mat.$amber-palette !default;
+
+$easing: (
+  'ease': ease,
+  'ease-in': ease-in,
+  'ease-out': ease-out,
+  'ease-in-out': ease-in-out,
+  'default': cubic-bezier(0.4, 0.0, 0.2, 1),
+  'decelerate': cubic-bezier(0.0, 0.0, 0.2, 1),
+  'accelerate': cubic-bezier(0.4, 0.0, 1, 1)
+) !default;
+
+$contrast-threshold: 55%;

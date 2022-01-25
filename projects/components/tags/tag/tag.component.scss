@@ -1,0 +1,52 @@
+.flz-tag{
+  vertical-align: middle;
+
+  &-wrapper{
+    display: inline-block;
+    border-radius: 7.5%;
+    user-select: none;
+
+    background-color: var(--primary);
+    color: var(--base);
+
+    &[color="primary"]{
+      background-color: var(--primary);
+      color: var(--base);
+    }
+
+    &[color="accent"]{
+      background-color: var(--accent);
+      color: var(--base);
+    }
+
+    &[color="warn"]{
+      background-color: var(--warn);
+      color: var(--base);
+    }
+
+    &.small{
+      padding: 0 0.2rem;
+
+      .flz-tag{
+        font-size: 0.72rem;
+        line-height: 1.12rem;
+      }
+    }
+    &.medium{
+      padding: 0 0.3rem;
+
+      .flz-tag{
+        font-size: 0.78rem;
+        line-height: 1.2rem;
+      }
+    }
+    &.large{
+      padding: 0 0.4rem;
+
+      .flz-tag{
+        font-size: 0.83rem;
+        line-height: 1.3rem;
+      }
+    }
+  }
+}

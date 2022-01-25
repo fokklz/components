@@ -1,0 +1,120 @@
+<ng-container [ngSwitch]="template">
+
+  <ng-container *ngSwitchDefault>
+    <mat-form-field [ngClass]="_('', '-' + template, template)">
+      <mat-label *ngIf="isUsingLabel()">{{langKey | translate: resolveTranslateDefault(langKey)}}</mat-label>
+      <input
+      [ngClass]="_('input', 'form-control')"
+      [type]="resolveInputType()"
+      [formControl]="resolveFormControl()"
+      [placeholder]="resolvePlaceholder()"
+      [name]="formControlName"
+      matInput tabindex="0" [autofocus]="options.autofocus || false">
+      <mat-hint *ngIf="isUsingHint()">{{resolveHint()}}</mat-hint>
+      <mat-error *ngFor="let error of resolveFormControlErrors()">{{'FORMS.ERRORS.' + error.toUpperCase() | translate}}</mat-error>
+      <button [ngClass]="_('button')" mat-icon-button (click)="togglePassword($event)" *ngIf="isInputType('password')" #passwordToggle matSuffix disableRipple><flz-icon>{{resolvePasswordIcon()}}</flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'button'" color="primary" class="prefix" (click)="executePrefix()" matPrefix><flz-icon [icon]="resolvePrefix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text-button'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</button>
+      <span *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</span>
+      <button mat-icon-button *ngIf="!isInputType('password') && isUsingSuffix() && (options.suffixType || 'button') === 'button'" color="primary" class="suffix" (click)="executeSuffix()" matSuffix><flz-icon [icon]="resolveSuffix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="!isInputType('password') && isUsingSuffix() && (options.suffixType || 'button') === 'text-button'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</button>
+      <span *ngIf="!isInputType('password') && isUsingSuffix() && (options.suffixType || 'button') === 'text'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</span>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'textarea'">
+    <mat-form-field [ngClass]="_('', '-' + template, template)">
+      <mat-label *ngIf="isUsingLabel()">{{langKey | translate: resolveTranslateDefault(langKey)}}</mat-label>
+      <textarea
+      [ngClass]="_('input', '-textarea', 'form-control')"
+      [formControl]="resolveFormControl()"
+      [placeholder]="resolvePlaceholder()"
+      [name]="formControlName"
+      matInput tabindex="0" [autofocus]="options.autofocus || false"></textarea>
+      <mat-hint *ngIf="isUsingHint()">{{resolveHint()}}</mat-hint>
+      <mat-error *ngFor="let error of resolveFormControlErrors()">{{'FORMS.ERRORS.' + error.toUpperCase() | translate}}</mat-error>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'button'" color="primary" class="prefix" (click)="executePrefix()" matPrefix><flz-icon [icon]="resolvePrefix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text-button'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</button>
+      <span *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</span>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'button'" color="primary" class="suffix" (click)="executeSuffix()" matSuffix><flz-icon [icon]="resolveSuffix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text-button'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</button>
+      <span *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</span>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'date'">
+    <mat-form-field [ngClass]="_('', '-' + template, template)">
+      <mat-label *ngIf="isUsingLabel()">{{langKey | translate: resolveTranslateDefault(langKey)}}</mat-label>
+      <input
+      [ngClass]="_('input', 'form-control')"
+      [matDatepicker]="picker"
+      [formControl]="resolveFormControl()"
+      [placeholder]="resolvePlaceholder()"
+      [name]="formControlName"
+      matInput tabindex="0" [autofocus]="options.autofocus || false">
+      <mat-datepicker #picker></mat-datepicker>
+      <button [ngClass]="_('button')" mat-icon-button (click)="picker.open()" matSuffix disableRipple><flz-icon>calendar-alt</flz-icon></button>
+      <mat-hint *ngIf="isUsingHint()">{{resolveHint()}}</mat-hint>
+      <mat-error *ngFor="let error of resolveFormControlErrors()">{{'FORMS.ERRORS.' + error.toUpperCase() | translate}}</mat-error>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'button'" color="primary" class="prefix" (click)="executePrefix()" matPrefix><flz-icon [icon]="resolvePrefix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text-button'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</button>
+      <span *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</span>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'button'" color="primary" class="suffix" (click)="executeSuffix()" matSuffix><flz-icon [icon]="resolveSuffix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text-button'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</button>
+      <span *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</span>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'daterange'">
+    <mat-form-field [ngClass]="_('', '-' + template, template)">
+      <mat-label *ngIf="isUsingLabel()">{{langKey | translate: resolveTranslateDefault(langKey)}}</mat-label>
+      <mat-date-range-input [ngClass]="_('input', '-date-range', 'form-control')" [formGroup]="dateRangeForm" [rangePicker]="picker">
+        <input [ngClass]="_('input-date', '-start', 'form-control')" matStartDate formControlName="start" [placeholder]="startDateInputPlaceholder" tabindex="0">
+        <input [ngClass]="_('input-date', '-end', 'form-control')" matEndDate formControlName="end" [placeholder]="endDateInputPlaceholder" tabindex="0">
+      </mat-date-range-input>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <button [ngClass]="_('button')" mat-icon-button (click)="picker.open()" matSuffix disableRipple><flz-icon>calendar-alt</flz-icon></button>
+      <mat-hint *ngIf="isUsingHint()">{{resolveHint()}}</mat-hint>
+      <mat-error *ngFor="let error of resolveFormControlErrors()">{{'FORMS.ERRORS.' + error.toUpperCase() | translate}}</mat-error>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'button'" color="primary" class="prefix" (click)="executePrefix()" matPrefix><flz-icon [icon]="resolvePrefix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text-button'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</button>
+      <span *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</span>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'button'" color="primary" class="suffix" (click)="executeSuffix()" matSuffix><flz-icon [icon]="resolveSuffix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text-button'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</button>
+      <span *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text'" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</span>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'select'">
+    <div class="flz-form-field">
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'button'" color="primary" class="prefix" (click)="executePrefix()" matPrefix><flz-icon [icon]="resolvePrefix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text-button'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</button>
+      <span *ngIf="isUsingPrefix() && (options.suffixType || 'button') === 'text'" (click)="executePrefix()" matPrefix>{{resolvePrefix()}}</span>
+      <mat-form-field [ngClass]="_('', '-' + template, template)">
+        <mat-label *ngIf="isUsingLabel()">{{langKey + "._" | translate: resolveTranslateDefault(langKey + "._")}}</mat-label>
+        <mat-select
+        [formControl]="resolveFormControl()"
+        [placeholder]="resolvePlaceholder()" tabindex="0"
+        [multiple]="multiSelect" >
+          <mat-option *ngFor="let option of resolveSelectOptions()" [value]="option.value">{{langKey + '.' + option.value.toString().toUpperCase() | translate: resolveTranslateDefault(option.labelDefault || langKey + '.' + option.value.toString().toUpperCase())}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'button' && (resolveFormControl().value === null || resolveFormControl().value.length == 0)" color="primary" class="suffix" (click)="executeSuffix()" matSuffix><flz-icon [icon]="resolveSuffix()"></flz-icon></button>
+      <button mat-icon-button *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text-button' && (resolveFormControl().value === null || resolveFormControl().value.length == 0)" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</button>
+      <span *ngIf="isUsingSuffix() && (options.suffixType || 'button') === 'text' && (resolveFormControl().value === null || resolveFormControl().value.length == 0)" (click)="executeSuffix()" matSuffix>{{resolveSuffix()}}</span>
+      <button mat-icon-button *ngIf="resolveFormControl().value !== null && resolveFormControl().value.length > 0" class="suffix" matSuffix color="warn" (click)="resolveFormControl().setValue('')"><flz-icon icon="times"></flz-icon></button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'toggle'">
+    <div [ngClass]="_('', '-' + template, template)">
+      <mat-slide-toggle [ngClass]="_('toggle')" color="primary" [formControl]="resolveFormControl()">{{langKey | translate: resolveTranslateDefault(langKey)}}</mat-slide-toggle>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'checkbox'">
+    <div [ngClass]="_('', '-' + template, template)">
+      <mat-checkbox [ngClass]="_('checkbox')" color="primary" [formControl]="resolveFormControl()">{{langKey | translate: resolveTranslateDefault(langKey)}}</mat-checkbox>
+    </div>
+  </ng-container>
+</ng-container>

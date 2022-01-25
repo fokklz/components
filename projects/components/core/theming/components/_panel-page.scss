@@ -1,0 +1,59 @@
+
+@use '../import' as *;
+
+@use '@angular/material' as mat;
+@use 'sass:map' as map;
+
+@mixin theme($theme) {
+  .flz-panel-page{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    min-width: 300px;
+
+    button{
+      display: block;
+      width: 100%;
+      border-radius: 0 !important;
+    }
+
+    &-wrapper{
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    &-divider{
+      height: 0.9px;
+      margin: 1rem 0;
+      margin-bottom: 0.7rem;
+    }
+
+    &-section{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+
+@mixin theme-color($theme){
+  .flz-panel-page{
+    @include mat.elevation(1, get-color($theme, foreground, elevation), 0.7);
+    background-color: get-color($theme, background, background);
+
+    &-wrapper{
+      @if is_dark($theme) {
+        background-image: linear-gradient(to right top, rgba(darken(get-color($theme, primary, text), 10%), 0.75), rgba(get-color($theme, primary, darker), 0.9));
+      } @else {
+        background-image: linear-gradient(to right top, rgba(get-color($theme, primary, text), 0.7), rgba(darken(get-color($theme, primary, text), 10%), 0.9));
+      }
+    }
+
+    &-divider{
+      background-color: get-color($theme, foreground, divider);
+    }
+  }
+}

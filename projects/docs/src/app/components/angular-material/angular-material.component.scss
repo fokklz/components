@@ -1,0 +1,74 @@
+@use 'sass:map' as map;
+@use '@angular/material' as mat;
+@use '../../../theme' as *;
+@use '../../../../../components/core/theming/mixins' as *;
+
+@mixin create-palette-css($palette){
+  &:nth-child(1){
+    background-color: mat.get-color-from-palette($palette, default);
+    color: mat.get-color-from-palette($palette, default-contrast);
+  }
+  &:nth-child(2){
+    background-color: mat.get-color-from-palette($palette, lighter);
+    color: mat.get-color-from-palette($palette, lighter-contrast);
+  }
+  &:nth-child(3){
+    background-color: mat.get-color-from-palette($palette, darker);
+    color: mat.get-color-from-palette($palette, darker-contrast);
+  }
+}
+
+@mixin palette-css($palette, $palette-dark){
+  &-padding{
+    padding: 0 1rem;
+    margin: 0;
+  }
+  div{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-top: 0 !important;
+    @include mat.typography-level($typo-config, subheading-2);
+    @include create-palette-css($palette);
+
+    @include dark{
+      @include create-palette-css($palette-dark);
+    }
+  }
+}
+
+.font-variants-preview{
+  padding: 1rem;
+}
+
+.palette-preview-container{
+  padding-top: 1rem;
+
+  &:last-child{
+    padding-bottom: 1rem;
+  }
+}
+.mat-primary-row{
+  @include palette-css($light-primary, $dark-primary);
+}
+
+.mat-accent-row{
+  @include palette-css($light-accent, $dark-accent);
+}
+
+.mat-warn-row{
+  @include palette-css($light-warn, $dark-warn);
+}
+
+.mat-info-row{
+  @include palette-css($light-info, $dark-info);
+}
+
+.mat-success-row{
+  @include palette-css($light-success, $dark-success);
+}
+
+.mat-warning-row{
+  @include palette-css($light-warning, $dark-warning);
+}

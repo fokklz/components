@@ -1,0 +1,107 @@
+
+@use '../import' as *;
+@use '@angular/material' as mat;
+@use 'sass:map' as map;
+
+@mixin social($name, $color, $theme) {
+  $config: mat.get-color-config($theme);
+  $foreground: map.get($config, foreground);
+  $background: map.get($config, background);
+  $primary: map.get($config, primary);
+  $accent: map.get($config, accent);
+  $warn: map.get($config, warn);
+
+  $dark-icon-contrast: contrast-color($color, mat.get-color-from-palette($background, background), mat.get-color-from-palette($foreground, base));
+  $light-icon-contrast: contrast-color($color, mat.get-color-from-palette($foreground, base), mat.get-color-from-palette($background, background));
+
+  &.#{$name}{
+    color: $color;
+
+    @if is_dark($theme) {
+      background-color: $color;
+      color: $dark-icon-contrast;
+    } @else {
+      border-color: darken($color, 4%);
+    }
+
+    .#{$name}-icon{
+      color: is_dark($theme, $dark-icon-contrast, $color);
+    }
+  }
+
+  &:hover{
+    &.#{$name}{
+      background-color: is_dark($theme, darken($color, 4%), $color);
+      color: is_dark($theme, $dark-icon-contrast, $light-icon-contrast);
+
+      .#{$name}-icon{
+        color: is_dark($theme, $dark-icon-contrast, $light-icon-contrast);
+      }
+    }
+  }
+}
+
+@mixin theme($theme){
+  .thirdparty-button{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 !important;
+    @include transition(.3s, color, border-color, background-color);
+    margin: 0.3rem 0 !important;
+
+    .mat-button-focus-overlay{
+      background-color:transparent;
+    }
+
+    &-icon{
+      @include transition(.3s, color);
+    }
+  }
+
+  button, a{
+    &.with-icon{
+      .mat-button-wrapper{
+        margin: 0 20px;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
+
+      .icon{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%);
+        font-size: 0.85rem;
+        top: 50%;
+        left: 0;
+        height: 100%;
+        padding: 0 0.65rem;
+      }
+    }
+  }
+}
+
+@mixin theme-color($theme) {
+  .thirdparty-button{
+    @include social('google', #DB4437, $theme);
+    @include social('twitter', #1DA1F2, $theme);
+    @include social('facebook', #4267B2, $theme);
+    @include social('twitch', #6441a5, $theme);
+    @include social('github', #333333, $theme);
+    @include social('dropbox', #007ee5, $theme);
+    @include social('instagram', #e1306c, $theme);
+    @include social('linkedin', #0077b5, $theme);
+    @include social('microsoft', #f65314, $theme);
+  }
+
+
+  button, a{
+    &.with-icon{
+      &:hover{
+        color: get-color($theme, primary, text);
+      }
+    }
+  }
+}

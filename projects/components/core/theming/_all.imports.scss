@@ -1,0 +1,7 @@
+@forward './components/panel-page' as panel-page-*;
+@forward './components/thirdparty-button' as thirdparty-button-*;
+
+@forward '../../inline-message/inline-message' as inline-message-*;
+@forward '../../sidenav/sidenav' as sidenav-*;
+@forward '../../toolbar/toolbar' as toolbar-*;
+@forward '../../admin-panel/admin-panel' as admin-panel-*;

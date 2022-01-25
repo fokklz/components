@@ -1,0 +1,75 @@
+.flz-form-builder {
+  &-form {
+    &-group{
+      display: flex;
+      margin-bottom: 0.3rem;
+      flex-direction: row;
+
+      @media screen and (max-width: 425px) {
+        flex-direction: column;
+      }
+
+      &-input{
+        flex: 1 1 auto;
+        padding: 0 0.5rem;
+
+        @media screen and (max-width: 425px) {
+          padding: 0;
+        }
+
+        &:first-child{
+          padding-left: 0;
+        }
+        &:last-child{
+          padding-right: 0;
+        }
+      }
+    }
+
+    .flz-form-field-wrapper {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    &-buttons {
+      display: flex;
+      flex-direction: row;
+      padding: 0 0.6rem;
+    }
+  }
+
+  &-wrapper {
+    display: block;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::ng-deep {
+  .flz-form-builder-form-preview{
+    .flz-form-field{
+      &.mat-form-field-disabled{
+        .mat-form-field-underline{
+          background-image: none;
+        }
+        .mat-form-field-label{
+          color: var(--primary);
+          font-size: 1rem;
+          font-weight: 600;
+        }
+      }
+      .mat-input-element:disabled{
+        color: unset;
+      }
+    }
+  }
+}

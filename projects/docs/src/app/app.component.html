@@ -1,0 +1,7 @@
+<mat-toolbar>
+  <span class="brand">@fokklzdev/components</span>
+  <span class="fill-space"></span>
+  <button mat-icon-button *ngIf="light" (click)="toggleTheme()"><mat-icon>dark_mode</mat-icon></button>
+  <button mat-icon-button *ngIf="!light" (click)="toggleTheme()"><mat-icon>light_mode</mat-icon></button>
+</mat-toolbar>
+<app-angular-material></app-angular-material>

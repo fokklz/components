@@ -1,0 +1,82 @@
+@use 'sass:map' as map;
+@use '@angular/material'as mat;
+@use './variables' as *;
+
+@function define-light-theme($primary-palette, $accent-palette, $warn-palette, $info-palette, $success-palette, $warning-palette){
+  $theme: mat.define-light-theme((
+    color: (
+      primary: $primary-palette,
+      accent: $accent-palette,
+      warn: $warn-palette
+    ),
+  ));
+  $theme: map.deep-merge($theme, (
+    color: (
+      info: $info-palette,
+      success: $success-palette,
+      warning: $warning-palette
+    )
+  ));
+  @return $theme;
+}
+
+@function define-dark-theme($primary-palette, $accent-palette, $warn-palette, $info-palette, $success-palette, $warning-palette){
+  $theme: mat.define-dark-theme((
+    color: (
+      primary: $primary-palette,
+      accent: $accent-palette,
+      warn: $warn-palette
+    ),
+  ));
+  $theme: map.deep-merge($theme, (
+    color: (
+      info: $info-palette,
+      success: $success-palette,
+      warning: $warning-palette
+    )
+  ));
+  @return $theme;
+}
+
+@function get-color($theme, $name, $hue: null, $opacity: null){
+  $colors: mat.get-color-config($theme);
+  $color: map-get($colors, $name);
+  @if $hue == null {
+    @return mat.get-color-from-palette($color);
+  } @else{
+    @return mat.get-color-from-palette($color, $hue, $opacity);
+  }
+}
+
+
+@function get-contrast-color($theme, $name, $hue, $opacity: null){
+  $colors: mat.get-color-config($theme);
+  $color: map.get($colors, $name);
+  $contrast: mat.get-contrast-color-from-palette($color, $hue);
+  @if $opacity == null {
+    @return $contrast;
+  } @else {
+    @return rgba($contrast, $opacity);
+  }
+}
+
+
+
+
+@function contrast-color($color, $dark, $light) {
+  @return if(lightness($color) < $contrast-threshold, $light, $dark);
+}
+
+
+@function is_dark($theme, $then: null, $else: null){
+  $is-dark: map-get(map-get($theme, color), is-dark);
+  @if $then != null and $else != null {
+    @if $is-dark {
+      @return $then;
+    }
+
+    @return $else;
+  }
+
+  @return $is-dark;
+}

@@ -1,0 +1,94 @@
+@use '../core/theming/functions' as *;
+
+@use 'sass:map' as map;
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .flz-admin-panel-wrapper{
+    display: block;
+  }
+
+  .mat-drawer-side{
+    border-right: 0 !important;
+  }
+  .flz-admin-panel {
+    max-height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    &-drawer {
+      position: fixed;
+      top: 64px;
+
+      @media (max-width: 599px){
+        top: 56px;
+      }
+
+      > .mat-drawer-inner-container {
+        > .mat-list {
+          min-width: 15vw;
+          padding-top: 0;
+        }
+      }
+      &-toggle{
+        transform: scale(0.7);
+      }
+      &-container {
+        display: flex;
+        flex: 1 1 auto;
+        background: none;
+        overflow: auto;
+      }
+      &-content{
+        display: flex;
+        position: relative;
+        flex: 1 1 auto;
+        overflow: auto;
+
+        router-outlet{
+          width: 0;
+        }
+
+        > * {
+          display: block;
+          width: 100%;
+        }
+
+        .flz-scroll{
+          max-height: calc(100vh - 64px);
+        }
+      }
+    }
+  }
+
+  .flz-admin-page-wrapper{
+    padding: 1.2rem 1rem;
+
+    flz-code-snippet{
+      > * {
+        margin: 0.8rem 0;
+      }
+      &:first-child{
+        > * {
+          margin-top: 0;
+        }
+      }
+
+      &:last-child{
+        > * {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@mixin theme-color($theme) {
+  .flz-admin-panel {
+    &-drawer {
+      // TODO: box-shadow
+      box-shadow: 0 0.3rem 0.6rem 0 rgba(44, 51, 73, 0.1);
+    }
+  }
+}

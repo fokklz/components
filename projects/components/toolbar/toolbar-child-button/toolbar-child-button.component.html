@@ -1,0 +1,8 @@
+<mat-list-item [ngClass]="_('item')" matRipple matRippleColor="var(--primary-ripple)">
+  <div [ngClass]="_('item-label')">
+    <div [ngClass]="_('item-label-icon')">
+      <mat-icon>{{config.icon}}</mat-icon>
+    </div>
+    <span [ngClass]="_('item-label-text')">{{_lang_key() | translate: _lang_default()}}</span>
+  </div>
+</mat-list-item>

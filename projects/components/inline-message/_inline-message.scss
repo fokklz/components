@@ -1,0 +1,57 @@
+@use '../core/theming/functions' as *;
+
+@mixin theme($theme) {
+  .flz-inline-message{
+    overflow: hidden;
+    padding: 0 1rem;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .3s, opacity .3s, margin-bottom .3s, padding-top .3s, padding-bottom .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    margin-bottom: 0;
+
+    &.enabled{
+      max-height: 100vh;
+      opacity: 1;
+      margin-bottom: 1rem;
+      padding-top: 0.7rem;
+      padding-bottom: 0.7rem;
+    }
+
+    span{
+      opacity: 0.6;
+    }
+
+    &-wrapper{
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+
+@mixin theme-color($theme){
+  .flz-inline-message{
+    background-color: rgba(get-color($theme, background, background), 0.1);
+    border-left: 3px solid rgba(get-color($theme, background, background), 0.2);
+
+    &.error{
+      background-color: rgba(get-color($theme, warn), 0.3);
+      border-left-color: get-color($theme, warn);
+    }
+
+    &.success{
+      background-color: rgba(get-color($theme, success), 0.3);
+      border-left-color: get-color($theme, success);
+    }
+
+    &.warn{
+      background-color: rgba(get-color($theme, warning), 0.3);
+      border-left-color: get-color($theme, warning);
+    }
+
+    &.info{
+      background-color: rgba(get-color($theme, info), 0.3);
+      border-left-color: get-color($theme, info);
+    }
+  }
+}

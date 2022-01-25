@@ -1,0 +1,11 @@
+<mat-list-item [ngClass]="_('', _child_or_parent())" [class.has-childs]="hasChilds" (click)="sendRoute($event)">
+  <div [ngClass]="_('label', _child_or_parent())">
+    <div [ngClass]="_('label-icon-wrapper', _child_or_parent())">
+      <mat-icon [ngClass]="_('label-icon', _child_or_parent())">{{config.icon}}</mat-icon>
+    </div>
+    <div [ngClass]="_('label-text')">{{_convert_lang_key('TERM.' + config.link) | translate}}</div>
+  </div>
+  <mat-list class="flz-sidenav-for-child" *ngIf="hasChilds">
+    <flz-sidenav-button *ngFor="let item of config.children" [config]="item" [basePath]="_create_path()" (flzActive)="active = true"></flz-sidenav-button>
+  </mat-list>
+</mat-list-item>

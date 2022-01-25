@@ -1,0 +1,32 @@
+.flz-tag {
+  vertical-align: middle; }
+  .flz-tag-wrapper {
+    display: inline-block;
+    border-radius: 7.5%;
+    user-select: none;
+    background-color: var(--primary);
+    color: var(--base); }
+    .flz-tag-wrapper[color="primary"] {
+      background-color: var(--primary);
+      color: var(--base); }
+    .flz-tag-wrapper[color="accent"] {
+      background-color: var(--accent);
+      color: var(--base); }
+    .flz-tag-wrapper[color="warn"] {
+      background-color: var(--warn);
+      color: var(--base); }
+    .flz-tag-wrapper.small {
+      padding: 0 0.2rem; }
+      .flz-tag-wrapper.small .flz-tag {
+        font-size: 0.72rem;
+        line-height: 1.12rem; }
+    .flz-tag-wrapper.medium {
+      padding: 0 0.3rem; }
+      .flz-tag-wrapper.medium .flz-tag {
+        font-size: 0.78rem;
+        line-height: 1.2rem; }
+    .flz-tag-wrapper.large {
+      padding: 0 0.4rem; }
+      .flz-tag-wrapper.large .flz-tag {
+        font-size: 0.83rem;
+        line-height: 1.3rem; }
